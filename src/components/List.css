@@ -1,0 +1,27 @@
+.movie {
+    border-radius: 0.5rem;
+    background-color: #3D3F51;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    height: 225px;
+    width: 150px;
+  }
+  .movie img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    transition: transform 450ms
+  }
+  .movie:hover  {
+    transform: scale(1.05);
+  }
+  .movie-info {
+    position: relative;
+    padding-top: 1.5rem;
+  }
+  
+  .movie:hover .movie-overlay {
+    transform: translateY(0%);
+  }
