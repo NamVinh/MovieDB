@@ -1,6 +1,4 @@
 import React from 'react'
-import {Footer} from './Footer'
-import {Menu} from './Menu'
 import {List} from './List'
 export const Search = (search_value) => {
 
@@ -10,15 +8,11 @@ export const Search = (search_value) => {
     
     return (
         <div>
-           <Menu/>
                 <div className="container">  
                     <div className="row mt-3">  
                         <List fetchUrl={SEARCH_API + id}/>
                     </div>
                 </div>
-              
-            <Footer/>
-
         </div>
     )
 }

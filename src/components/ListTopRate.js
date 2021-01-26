@@ -1,34 +1,19 @@
 import React, { useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import './List.css'
-import { loadMovies} from '../redux/actions/movieAction'
-const IMG_API = 'https://image.tmdb.org/t/p/w1280';
-export const List = ({fetchUrl}) => {
-   
-    //redux hooks
-    const data = useSelector( state =>  state.movies.data);
+import { useDispatch, useSelector } from 'react-redux';
+import { loadTopRatedMovies} from '../redux/actions/toprateAction'
+
+export const ListTopRate = () => {
+    const IMG_API = 'https://image.tmdb.org/t/p/w1280';
+    // redux hooks
     const dispatch = useDispatch();
+    const data = useSelector( state =>  state.toprate.data);
+    console.log(data)
     useEffect(() => {
-        
-        dispatch(loadMovies(fetchUrl))},[fetchUrl])
+        dispatch(loadTopRatedMovies())
+    },[])
     
-    // const [movies, setMovies] = useState([]);
-    // useEffect(() => {
-    //      fetchData_API(fetchUrl)
-    //  }, [fetchUrl])
-
-    // const  fetchData_API = async (fetchUrl)  => {
-        
-    //     await  fetch(fetchUrl)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         console.log(data.results)
-    //          setMovies(data.results)
-    //      })
-    
-    //  }
-
     // border vote
     const setVoteClass = (vote) => {
         if(vote >= 8) {
@@ -50,6 +35,7 @@ export const List = ({fetchUrl}) => {
     
      const movieList = (data && data.length > 0) ? data.map((item, index) =>{
         
+
         return (
             <div className="col-md-3 col-xl-2 " style={{marginBottom: '1rem'}} key={index}>
                 <div className="movie" >

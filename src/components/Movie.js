@@ -1,35 +1,26 @@
-import React, {useState,useEffect} from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import {Footer} from './Footer'
-import {Menu} from './Menu'
+import React, {useEffect} from 'react'
+import Carousel from 'react-bootstrap/Carousel'
 import {List} from './List'
+import {ListTopRate} from './ListTopRate'
 import {SlideArray} from './SlideArray'
+import {useDispatch, useSelector} from 'react-redux'
+import {loadNowPlaying} from '../redux/actions/nowplayingAction'
+import {loadPersons} from '../redux/actions/personsAction'
 export const Movie = () => {
-
+    // constants
     const MOVIES_BYGENRE_API = 'https://api.themoviedb.org/3/discover/movie?api_key=5189f4621a63c386a27e8be715fc7ab2&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=';
-    const PERSON_API = 'https://api.themoviedb.org/3/trending/person/week?api_key=5189f4621a63c386a27e8be715fc7ab2';
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';
-    const NOWPLAYING_API = 'https://api.themoviedb.org/3/movie/now_playing?api_key=5189f4621a63c386a27e8be715fc7ab2&language=en-US&page=1';
-    const TOPRATED_API = 'https://api.themoviedb.org/3/movie/top_rated?api_key=5189f4621a63c386a27e8be715fc7ab2&language=en-US&page=1';
-  
-    const [nowPlaying, setNowPlaying] = useState([]);
-    const [persons, setPersons] = useState([]);
- 
+    //redux hooks
+    const dispatch = useDispatch();
+    const nowPlaying = useSelector( state => state.nowplaying.data );
+    const persons = useSelector( state => state.persons.data );
+
     useEffect(() => {
-        fetchNowplaying();
-        fetchPersons();
+       dispatch(loadNowPlaying());
+       dispatch(loadPersons());
       },[])
 
-    const fetchNowplaying = () => {
-        fetch(NOWPLAYING_API)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data.results)
-            setNowPlaying(data.results)
-        })
-        
-    }
-    const slidemovies = nowPlaying.slice(0,5).map((item,index) => {
+    const slidemovies = nowPlaying?.slice(0,5).map((item,index) => {
         return (
             <Carousel.Item key={index}>
                 <div style={{width: '100%'}} >
@@ -46,16 +37,7 @@ export const Movie = () => {
         )
     })
 
-    const fetchPersons = () => {
-        fetch(PERSON_API)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data.results)
-            setPersons(data.results)
-        })
-    }
-
-    const trendingpersons = persons.slice(0,4).map((item, index) =>{
+    const trendingpersons = persons?.slice(0,4).map((item, index) =>{
         return (
             <div className="col-md-6 col-xl-3 text-center " key={index}>
                 <img className=" rounded-circle " height="250" width="250" style={{objectFit:'cover'}} src={IMG_API + item.profile_path} alt={item.name} />
@@ -68,24 +50,21 @@ export const Movie = () => {
     
     return (
         <div> 
-            
-            <Menu/>
-
                 <div className="bgGrey d-flex">
-                        <div className="col-2 "></div>
-                        <div className="col-8 ">
-                            <Carousel
-                            interval={1000} >   
-                            {slidemovies}
-                            </Carousel>
-                        </div>
+                            <div className="col-2 "></div>
+                            <div className="col-8 ">
+                                <Carousel
+                                interval={1000} >   
+                                {slidemovies}
+                                </Carousel>
+                            </div>
                 </div>
 
        
                 <div className="container">
                     <div className="row mt-3"> <h3> What's Popular</h3> </div>
                         <div className="row mt-3">
-                            <div className="movie-container"><List fetchUrl={MOVIES_BYGENRE_API}/> </div>
+                            <div className="movie-container"><List fetchUrl={MOVIES_BYGENRE_API} /> </div>
                         </div>
                 </div>
 
@@ -94,7 +73,7 @@ export const Movie = () => {
                 <div className="container">
                     <div className="row mt-3"> <h3>Top Rated Movies</h3> </div>
                         <div className="row mt-3">
-                            <div className="movie-container"><List fetchUrl={TOPRATED_API}/></div>
+                            <div className="movie-container"><ListTopRate /></div>
                         </div>
                 </div>
       
@@ -106,8 +85,6 @@ export const Movie = () => {
                         <div className="row mt-3 "> {trendingpersons} </div>
                     </div>
                 </div>
-         
-            <Footer/>
         </div>
        
     )

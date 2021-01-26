@@ -6,34 +6,29 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import {Link,useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+import {loadGenres} from '../redux/actions/genreAction'
 import './Menu.css'
 export const Menu = () => {
 
-    const GENRE_API = 'https://api.themoviedb.org/3/genre/movie/list?api_key=5189f4621a63c386a27e8be715fc7ab2&language=en-US';
-    let history = useHistory();
-    const [genres, setGenres] = useState([]);
-    const [searchValue, setsearchValue] = useState("");
-
     useEffect(() => {
-        fetchGenre()
+        dispatch(loadGenres())
     },[])
+    // redux hooks
+    const dispatch = useDispatch();
+    const genre = useSelector( state => state.genres.data);     
+    const [searchValue, setsearchValue] = useState("");
+    // route hooks
+    let history = useHistory();
 
-    const fetchGenre = () => {
-        fetch(GENRE_API)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data.genres)
-            setGenres(data.genres)
-        })
-    }
-
-    const genresNav = genres.map((item, index) =>{
+    const genresNav = genre?.map((item, index) =>{
         return (
             <div className="item-dropdown" key={index}>
             <Link className="link-dropdown" to={`/genre/${item.id}`}>{item.name}</Link>
             </div>
         )
     })
+
     function handleClick() {
         history.push(`/search/movie/${searchValue}`);
       }

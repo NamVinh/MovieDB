@@ -116,7 +116,7 @@ code {
 
 @media (min-width: 768px) {
   .carousel-center img {
-    height: 600px;
+    height: 550px;
     width: 100%;
   }
   .space-img {
@@ -139,8 +139,12 @@ code {
 }
 
 @media (min-width: 992px) {
+  .carousel-center img {
+    height: 600px;
+    width: 100%;
+  }
   .space-img {
-    margin-left: 12rem !important;
+  margin-left: 12rem !important;
   padding-right: 19rem !important;
   }
   .mg {
@@ -154,6 +158,10 @@ code {
   }
 }
 @media (min-width: 1140px) {
+  .carousel-center img {
+    height: 700px;
+    width: 100%;
+  }
   .mg, .space-img {
     margin-left: 0rem !important;
   }

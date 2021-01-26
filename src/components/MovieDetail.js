@@ -4,50 +4,37 @@ import {FontAwesomeIcon} from'@fortawesome/react-fontawesome'
 import {Modal} from 'react-bootstrap'
 import ReactPlayer from 'react-player'
 import ReactStars from 'react-rating-stars-component'
-import {Footer} from './Footer'
-import {Menu} from './Menu'
 import {List} from './List'
 import{ListPerson} from './ListPerson'
+import {useDispatch, useSelector} from 'react-redux'
+import {loadMoviesDetail} from '../redux/actions/moviedetailAction'
+import {loadMoviesVideo} from '../redux/actions/movievideoAction'
+import {Link} from 'react-router-dom'
 import './MovieDetail.css'
 export const MovieDetail = (match) => {
-
+    // constants
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';
     const API_KEY =  '?api_key=5189f4621a63c386a27e8be715fc7ab2&language=en-US';
     const MOVIE_API = 'https://api.themoviedb.org/3/movie/';
-    const [details, setDetails] = useState([]);
-    const [isOpen, setIsOpen] = useState(false);
-    const [video, setVideo] = useState([]);
+    // redux hooks
+    const dispatch = useDispatch();
+    const data = useSelector( state => state.moviesdetail.data);
+    const datavideo = useSelector( state => state.moviesvideo.data);
+    const [isOpen,setIsOpen] = useState(false);
 
+    //get data
     // console.log(match.match.params.id)
-
+    const details = data ? data : '';
+    const video = datavideo ? datavideo : '';
     const idMovie = match.match.params.id;
     let genreArrays = [];
     genreArrays = details.genres;
 
     useEffect(() => {
-        fetchMovieDetails(idMovie);
-        fetchMovieVideos(idMovie);
+        dispatch(loadMoviesDetail(MOVIE_API+ idMovie + API_KEY));
+        dispatch(loadMoviesVideo(MOVIE_API+ idMovie + '/videos' + API_KEY));
     },[idMovie])
     
-    const fetchMovieDetails = (id) => {
-        
-        fetch(MOVIE_API+ id + API_KEY)
-        .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                setDetails(data)
-            })
-    }
-
-    const fetchMovieVideos = (id) => {
-        
-        fetch(MOVIE_API+ id + '/videos' + API_KEY)
-        .then((res) => res.json())
-            .then((data) => {
-                console.log(data.results[0].key)
-                setVideo(data.results[0].key)
-            })
-    }
 
     const MoviePlayerModal = (props) => {
         const youtubeUrl = 'https://www.youtube.com/watch?v=';
@@ -79,28 +66,28 @@ export const MovieDetail = (match) => {
             </Modal>
         )
     }
+
     let genresList;
     if(genreArrays){
         genresList = genreArrays.map((genre, index) => {
         return (
             <li className="list-inline-item" key={index}>
-                <button type="button" className="btn btn-outline-info"> {genre.name}</button>
+                <button type="button" className="btn btn-outline-info"><Link style={{textDecoration: 'none', color: '#ffffff'}} to={`/genre/${genre.id}`}>{genre.name}</Link></button>
             </li>
         )
     })
     }
 
-
     return (
     <div>
-        <Menu />
-        <div style={{ 
-        backgroundImage: `url(${IMG_API+details.backdrop_path})`, 
+        {/*background and overlay*/}
+         <div style={{ 
+        backgroundImage: `url(${IMG_API + details.backdrop_path})`, 
         backgroundSize: 'cover', 
         backgroundrepeat: 'no-repeat',
-        position: 'relative'}}>
-
+        position: 'relative'}}> 
             <div className="overlay"></div>
+            {/* detail */}
             <div className="container">
                 <div className="row" style={{color: 'white', padding:'1rem' }}>
        
@@ -141,7 +128,7 @@ export const MovieDetail = (match) => {
                 </div>
             </div>  
         </div>
-
+            {/* CASTS */}
             <div className="container">
                     <div className="row mt-3">
                         <div className="col">
@@ -149,17 +136,16 @@ export const MovieDetail = (match) => {
                         </div>
                     </div>
             
-                    <div className="person-container"> <ListPerson title="CASTS" fetchUrl={MOVIE_API+ idMovie + '/credits' + API_KEY}/></div>
+                    <div className="person-container"> <ListPerson fetchUrl={MOVIE_API+ idMovie + '/credits' + API_KEY}/></div>
         
+                    {/* Similar */}
                     <div className="row mt-3"> <h2> Similar Movies</h2> </div>
                         <div className="row mt-3">
                             <div className="movie-container">
                         <List fetchUrl={MOVIE_API+ idMovie + '/similar' + API_KEY}/>
                         </div>
                     </div>
-            
             </div>
-        <Footer/>
     </div>
     )
 }

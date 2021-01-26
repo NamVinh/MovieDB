@@ -34,14 +34,10 @@ const slide = slideArray.slice(0,5).map((item,index) => {
                                 <div>{item.author}</div>
                             </div>
                         </div>
-             
-            </div>
-               
+            </div>     
         </Carousel.Item>
-    
     )
 })
-
 
     return (
         <>
@@ -49,10 +45,8 @@ const slide = slideArray.slice(0,5).map((item,index) => {
             <Carousel
             interval={null}>   
              {slide}
-             </Carousel>
-           
-        </div>
-                
+             </Carousel> 
+        </div>     
         </>
     )
 }

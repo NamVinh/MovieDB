@@ -1,22 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import {loadPersonsDetail} from '../redux/actions/persondetailAction'
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
-export const ListPerson = ({title,fetchUrl}) => {
-    const [persons, setPersons] = useState([]);
+export const ListPerson = ({fetchUrl}) => {
+    const dispatch = useDispatch();
+    const persons = useSelector( state => state.persondetail.data);
+    
+    // console.log(persons, requesting)
 
-    useEffect(() => {
-        fetchPersons(fetchUrl)
-    },[fetchUrl])
+    useEffect(() => {dispatch(loadPersonsDetail(fetchUrl))},[fetchUrl])
 
-    const fetchPersons = async (fetchUrl) => {
-        await  fetch(fetchUrl)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data.cast)
-            setPersons(data.cast)
-        })
-    }
-
-    const trendingpersons = persons.map((item, index) =>{
+    const trendingpersons = (persons && persons.length > 0) ? persons.map((item, index) =>{
         return (
             <div className=" col-md-6 col-lg-2 text-center my-3"  key={index}>
                 <div className="casts">
@@ -29,14 +23,11 @@ export const ListPerson = ({title,fetchUrl}) => {
                 </div>
             </div>
         )
-    })
+    }) : <div>Data is empty</div> 
 
     return (
         <>
-        
-        
             {trendingpersons}
-           
         </>
     )
 }
