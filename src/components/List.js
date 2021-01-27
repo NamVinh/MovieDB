@@ -1,17 +1,22 @@
-import React, { useEffect} from 'react'
+import React, { useEffect,useCallback} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import '../css/List.css'
 import { loadMovies} from '../redux/actions/movieAction'
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 export const List = ({fetchUrl}) => {
-   
-    //redux hooks
-    const data = useSelector( state =>  state.movies.data);
+
+       //redux hooks
     const dispatch = useDispatch();
+
+    const initFetch = useCallback(() => {
+        dispatch(loadMovies(fetchUrl))
+    },[dispatch,fetchUrl])
+
     useEffect(() => {
-        
-        dispatch(loadMovies(fetchUrl))},[fetchUrl])
+        initFetch()  },[initFetch])
+ 
+    const data = useSelector( state =>  state.movies.data);
     
     // const [movies, setMovies] = useState([]);
     // useEffect(() => {
@@ -48,7 +53,7 @@ export const List = ({fetchUrl}) => {
         }
      }
     
-     const movieList = (data && data.length > 0) ? data.map((item, index) =>{
+     const movieList = data?.map((item, index) =>{
         
         return (
             <div className="col-md-3 col-xl-2 " style={{marginBottom: '1rem'}} key={index}>
@@ -61,7 +66,7 @@ export const List = ({fetchUrl}) => {
                 </div>
                 <div className="movie-info">
                     <div className="background-vote">
-                            <p className={`tag ${setVoteClass(item.vote_average)} `+ "d-flex justify-content-center"}> {item.vote_average} </p>
+                            <p className={`tag ${setVoteClass(item.vote_average)} d-flex justify-content-center`}> {item.vote_average} </p>
                     </div>
                             <Link className="title" style={{fontSize: 16}} to={`/movie/${item.id}`}><p>  {item.title} </p> </Link>
                             <p> Release Date: {release_dateSplit(item.release_date)}</p>
@@ -70,7 +75,7 @@ export const List = ({fetchUrl}) => {
             </div>
            
         )
-    }) : <div> Data is empty</div> 
+    })  
 
     return (
         <>

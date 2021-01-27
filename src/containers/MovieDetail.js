@@ -1,5 +1,5 @@
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useCallback} from 'react'
 import {FontAwesomeIcon} from'@fortawesome/react-fontawesome'
 import {Modal} from 'react-bootstrap'
 import ReactPlayer from 'react-player'
@@ -17,24 +17,28 @@ export const MovieDetail = (match) => {
     const API_KEY =  '?api_key=5189f4621a63c386a27e8be715fc7ab2&language=en-US';
     const MOVIE_API = 'https://api.themoviedb.org/3/movie/';
     // redux hooks
+    const idMovie = match.match.params.id;
     const dispatch = useDispatch();
+    const [isOpen,setIsOpen] = useState(false);
+    const initFetch = useCallback(() => {
+        dispatch(loadMoviesDetail(MOVIE_API+ idMovie + API_KEY));
+        dispatch(loadMoviesVideo(MOVIE_API+ idMovie + '/videos' + API_KEY));
+    },[dispatch,idMovie])
+
+    useEffect(() => {
+        initFetch();
+    },[initFetch])
+
     const data = useSelector( state => state.moviesDetail.data);
     const datavideo = useSelector( state => state.moviesVideo.data);
-    const [isOpen,setIsOpen] = useState(false);
+   
 
     //get data
     // console.log(match.match.params.id)
     const details = data ? data : '';
     const video = datavideo ? datavideo : '';
-    const idMovie = match.match.params.id;
     let genreArrays = [];
     genreArrays = details.genres;
-
-    useEffect(() => {
-        dispatch(loadMoviesDetail(MOVIE_API+ idMovie + API_KEY));
-        dispatch(loadMoviesVideo(MOVIE_API+ idMovie + '/videos' + API_KEY));
-    },[idMovie])
-    
 
     const MoviePlayerModal = (props) => {
         const youtubeUrl = 'https://www.youtube.com/watch?v=';

@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect,useCallback} from 'react'
 import {Link} from 'react-router-dom';
 import '../css/List.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,11 +8,17 @@ export const ListTopRate = () => {
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';
     // redux hooks
     const dispatch = useDispatch();
+
+    const initFetch = useCallback(() =>{
+        dispatch(loadTopRatedMovies())
+    },[dispatch])
+
+    useEffect(() => {
+        initFetch()
+    },[initFetch])
     const data = useSelector( state =>  state.topRate.data);
     console.log(data)
-    useEffect(() => {
-        dispatch(loadTopRatedMovies())
-    },[])
+    
     
     // border vote
     const setVoteClass = (vote) => {
@@ -33,7 +39,7 @@ export const ListTopRate = () => {
         }
      }
     
-     const movieList = (data && data.length > 0) ? data.map((item, index) =>{
+     const movieList = data?.map((item, index) =>{
         
 
         return (
@@ -47,7 +53,7 @@ export const ListTopRate = () => {
                 </div>
                 <div className="movie-info">
                     <div className="background-vote">
-                            <p className={`tag ${setVoteClass(item.vote_average)} `+ "d-flex justify-content-center"}> {item.vote_average} </p>
+                            <p className={`tag ${setVoteClass(item.vote_average)} d-flex justify-content-center`}> {item.vote_average} </p>
                     </div>
                             <Link className="title" style={{fontSize: 16}} to={`/movie/${item.id}`}><p>  {item.title} </p> </Link>
                             <p> Release Date: {release_dateSplit(item.release_date)}</p>
@@ -56,7 +62,7 @@ export const ListTopRate = () => {
             </div>
            
         )
-    }) : <div> Data is empty</div> 
+    })
 
     return (
         <>

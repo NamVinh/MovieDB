@@ -1,16 +1,21 @@
-import React, { useEffect} from 'react'
+import React, { useEffect,useCallback} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {loadPersonsDetail} from '../redux/actions/personDetailAction'
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 export const ListPerson = ({fetchUrl}) => {
-    const dispatch = useDispatch();
+
+    const dispatch = useDispatch();  
+    const initFetch = useCallback(() => {
+        dispatch(loadPersonsDetail(fetchUrl))
+    },[dispatch,fetchUrl])
+    useEffect(() => {initFetch()},[initFetch])
+
     const persons = useSelector( state => state.personDetail.data);
     
     // console.log(persons, requesting)
 
-    useEffect(() => {dispatch(loadPersonsDetail(fetchUrl))},[fetchUrl])
 
-    const trendingpersons = (persons && persons.length > 0) ? persons.map((item, index) =>{
+    const trendingpersons =  persons?.map((item, index) =>{
         return (
             <div className=" col-md-6 col-lg-2 text-center my-3"  key={index}>
                 <div className="casts">
@@ -23,7 +28,7 @@ export const ListPerson = ({fetchUrl}) => {
                 </div>
             </div>
         )
-    }) : <div>Data is empty</div> 
+    }) 
 
     return (
         <>

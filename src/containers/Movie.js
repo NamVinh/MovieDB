@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect,useCallback} from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import {List} from '../components/List'
 import {ListTopRate} from '../components/ListTopRate'
@@ -12,13 +12,18 @@ export const Movie = () => {
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';
     //redux hooks
     const dispatch = useDispatch();
+    const initFetch = useCallback(() =>{
+        dispatch(loadNowPlaying());
+        dispatch(loadPersons());
+    },[dispatch])
+    useEffect(() => {
+        initFetch();
+    },[initFetch])
+      
     const nowPlaying = useSelector( state => state.nowPlaying.data );
     const persons = useSelector( state => state.persons.data );
 
-    useEffect(() => {
-       dispatch(loadNowPlaying());
-       dispatch(loadPersons());
-      },[])
+    
 
     const slidemovies = nowPlaying?.slice(0,5).map((item,index) => {
         return (

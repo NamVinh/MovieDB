@@ -1,4 +1,4 @@
-import React, {useState, useEffect}from 'react'
+import React, {useState, useEffect,useCallback}from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
@@ -10,14 +10,21 @@ import {useDispatch, useSelector} from 'react-redux'
 import {loadGenres} from '../redux/actions/genreAction'
 import '../css/Menu.css'
 export const Menu = () => {
+    
+    const [searchValue, setsearchValue] = useState("");
+     // redux hooks
+    const dispatch = useDispatch();
+
+    const initFetch = useCallback(() => {
+        dispatch(loadGenres())
+    },[dispatch])
 
     useEffect(() => {
-        dispatch(loadGenres())
-    },[])
-    // redux hooks
-    const dispatch = useDispatch();
+        initFetch()
+    },[initFetch])
+   
     const genre = useSelector( state => state.genres.data);     
-    const [searchValue, setsearchValue] = useState("");
+    
     // route hooks
     let history = useHistory();
 
