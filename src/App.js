@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {Movie} from './components/Movie';
-import {MovieDetail} from './components/MovieDetail';
+import {Movie} from './containers/Movie';
+import {MovieDetail} from './containers/MovieDetail';
 import {Genre} from './components/Genre';
 import {Search} from './components/Search';
 import {Menu} from './components/Menu';

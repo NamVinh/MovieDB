@@ -4,13 +4,13 @@ import {FontAwesomeIcon} from'@fortawesome/react-fontawesome'
 import {Modal} from 'react-bootstrap'
 import ReactPlayer from 'react-player'
 import ReactStars from 'react-rating-stars-component'
-import {List} from './List'
-import{ListPerson} from './ListPerson'
+import {List} from '../components/List'
+import{ListPerson} from '../components/ListPerson'
 import {useDispatch, useSelector} from 'react-redux'
 import {loadMoviesDetail} from '../redux/actions/moviedetailAction'
 import {loadMoviesVideo} from '../redux/actions/movievideoAction'
 import {Link} from 'react-router-dom'
-import './MovieDetail.css'
+import '../css/MovieDetail.css'
 export const MovieDetail = (match) => {
     // constants
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';

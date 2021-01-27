@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import {Link,useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import {loadGenres} from '../redux/actions/genreAction'
-import './Menu.css'
+import '../css/Menu.css'
 export const Menu = () => {
 
     useEffect(() => {

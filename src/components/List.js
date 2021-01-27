@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
-import './List.css'
+import '../css/List.css'
 import { loadMovies} from '../redux/actions/movieAction'
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 export const List = ({fetchUrl}) => {
