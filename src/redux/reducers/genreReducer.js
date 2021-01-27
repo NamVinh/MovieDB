@@ -1,6 +1,6 @@
 import {FETCH_GENRE_FAILED,
     FETCH_GENRE_SUCCESS,
-    FETCH_GENRE_REQUEST} from '../constants/movieConstant';
+    FETCH_GENRE_REQUEST} from '../constants/ActionTypes';
 
 const initialState = {
     requesting: false,

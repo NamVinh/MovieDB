@@ -1,6 +1,6 @@
 import {
     FETCH_MOVIES_VIDEO_REQUEST,FETCH_MOVIES_VIDEO_SUCCESS,FETCH_MOVIES_VIDEO_FAILED,
-} from '../constants/movieConstant';
+} from '../constants/ActionTypes';
 
 export const loadMoviesVideo = (fetchUrl) => async dispatch => {
     try {

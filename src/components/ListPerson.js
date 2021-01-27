@@ -1,6 +1,6 @@
 import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {loadPersonsDetail} from '../redux/actions/persondetailAction'
+import {loadPersonsDetail} from '../redux/actions/personDetailAction'
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 export const ListPerson = ({fetchUrl}) => {
     const dispatch = useDispatch();

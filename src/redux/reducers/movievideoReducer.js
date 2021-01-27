@@ -1,6 +1,6 @@
 import {FETCH_MOVIES_VIDEO_FAILED,
     FETCH_MOVIES_VIDEO_SUCCESS,
-    FETCH_MOVIES_VIDEO_REQUEST} from '../constants/movieConstant';
+    FETCH_MOVIES_VIDEO_REQUEST} from '../constants/ActionTypes';
 
 const initialState = {
     requesting: false,

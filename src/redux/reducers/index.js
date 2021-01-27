@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
 
 import movieReducer from './movieReducer';
-import moviedetailReducer from './moviedetailReducer';
-import movievideoReducer from './movievideoReducer';
-import persondetailReducer from './persondetailReducer';
-import toprateReducer from './toprateReducer';
+import moviedetailReducer from './movieDetailReducer';
+import movievideoReducer from './movieVideoReducer';
+import persondetailReducer from './personDetailReducer';
+import toprateReducer from './topRateReducer';
 import genreReducer from './genreReducer';
-import nowplayingReducer from './nowplayingReducer';
+import nowplayingReducer from './nowPlayingReducer';
 import personReducer from './personReducer';
 
 const reducers = combineReducers ({

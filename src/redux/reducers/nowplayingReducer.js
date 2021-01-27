@@ -1,4 +1,4 @@
-import {FETCH_NOWPLAYING_REQUEST, FETCH_NOWPLAYING_SUCCESS, FETCH_NOWPLAYING_FAILED} from '../constants/movieConstant';
+import {FETCH_NOWPLAYING_REQUEST, FETCH_NOWPLAYING_SUCCESS, FETCH_NOWPLAYING_FAILED} from '../constants/ActionTypes';
 
 
 const initialState = {

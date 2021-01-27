@@ -1,6 +1,6 @@
 import {FETCH_PERSON_DETAIL_REQUEST,
     FETCH_PERSON_DETAIL_SUCCESS,
-    FETCH_PERSON_DETAIL_FAILED} from '../constants/movieConstant';
+    FETCH_PERSON_DETAIL_FAILED} from '../constants/ActionTypes';
 
 const initialState = {
     requesting: false,

@@ -1,6 +1,6 @@
 import {FETCH_TOP_RATED_FAILED, 
     FETCH_TOP_RATED_SUCCESS, 
-    FETCH_TOP_RATED_REQUEST} from '../constants/movieConstant';
+    FETCH_TOP_RATED_REQUEST} from '../constants/ActionTypes';
 
 const initialState = {
     requesting: false,

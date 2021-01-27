@@ -2,7 +2,7 @@ import React, { useEffect} from 'react'
 import {Link} from 'react-router-dom';
 import '../css/List.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { loadTopRatedMovies} from '../redux/actions/toprateAction'
+import { loadTopRatedMovies} from '../redux/actions/topRateAction'
 
 export const ListTopRate = () => {
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';

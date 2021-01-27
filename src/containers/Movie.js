@@ -4,7 +4,7 @@ import {List} from '../components/List'
 import {ListTopRate} from '../components/ListTopRate'
 import {SlideArray} from '../components/SlideArray'
 import {useDispatch, useSelector} from 'react-redux'
-import {loadNowPlaying} from '../redux/actions/nowplayingAction'
+import {loadNowPlaying} from '../redux/actions/nowPlayingAction'
 import {loadPersons} from '../redux/actions/personsAction'
 export const Movie = () => {
     // constants

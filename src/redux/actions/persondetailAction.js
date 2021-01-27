@@ -2,7 +2,7 @@ import {
     
     FETCH_PERSON_DETAIL_FAILED, FETCH_PERSON_DETAIL_SUCCESS, FETCH_PERSON_DETAIL_REQUEST,
     
-} from '../constants/movieConstant';
+} from '../constants/ActionTypes';
 
 export const loadPersonsDetail = (fetchUrl) => async dispatch => {
     try {
