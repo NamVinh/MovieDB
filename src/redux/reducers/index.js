@@ -9,7 +9,7 @@ import genreReducer from './genreReducer';
 import nowPlayingReducer from './nowPlayingReducer';
 import personReducer from './personReducer';
 
-export const reducers = (state, action) =>  combineReducers ({
+const reducers =  combineReducers ({
     movies: movieReducer,
     moviesDetail: movieDetailReducer,
     moviesVideo: movieVideoReducer,
@@ -19,4 +19,5 @@ export const reducers = (state, action) =>  combineReducers ({
     genres: genreReducer,
     nowPlaying: nowPlayingReducer,
 })
-
+const initreducers = (state, action) => reducers(state, action);
+export default  initreducers;
