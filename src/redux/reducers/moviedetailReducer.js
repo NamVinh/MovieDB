@@ -1,9 +1,6 @@
-import {FETCH_MOVIES_DETAIL_FAILED,
-    FETCH_MOVIES_DETAIL_SUCCESS,
-    FETCH_MOVIES_DETAIL_REQUEST} from '../constants/ActionTypes';
+import {FETCH_MOVIES_DETAIL_FAILED,FETCH_MOVIES_DETAIL_SUCCESS} from '../constants/ActionTypes';
 
 const initialState = {
-    requesting: false,
     success: false,
     message: null,
     data: null,
@@ -11,11 +8,6 @@ const initialState = {
 
 function moviedetailReducer( state = initialState, payload) {
     switch (payload.type){
-        case FETCH_MOVIES_DETAIL_REQUEST:
-            return {
-                ...state, 
-                requesting: true,
-            };
         case FETCH_MOVIES_DETAIL_SUCCESS:
             return {
                 ...state,

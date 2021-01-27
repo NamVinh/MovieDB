@@ -12,7 +12,7 @@ export const Movie = () => {
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';
     //redux hooks
     const dispatch = useDispatch();
-    const nowPlaying = useSelector( state => state.nowplaying.data );
+    const nowPlaying = useSelector( state => state.nowPlaying.data );
     const persons = useSelector( state => state.persons.data );
 
     useEffect(() => {

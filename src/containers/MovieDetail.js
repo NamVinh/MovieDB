@@ -18,8 +18,8 @@ export const MovieDetail = (match) => {
     const MOVIE_API = 'https://api.themoviedb.org/3/movie/';
     // redux hooks
     const dispatch = useDispatch();
-    const data = useSelector( state => state.moviesdetail.data);
-    const datavideo = useSelector( state => state.moviesvideo.data);
+    const data = useSelector( state => state.moviesDetail.data);
+    const datavideo = useSelector( state => state.moviesVideo.data);
     const [isOpen,setIsOpen] = useState(false);
 
     //get data

@@ -1,8 +1,7 @@
-import {FETCH_NOWPLAYING_REQUEST, FETCH_NOWPLAYING_SUCCESS, FETCH_NOWPLAYING_FAILED} from '../constants/ActionTypes';
+import {FETCH_NOWPLAYING_SUCCESS, FETCH_NOWPLAYING_FAILED} from '../constants/ActionTypes';
 
 
 const initialState = {
-    requesting: false,
     success: false,
     message: null,
     data: null,
@@ -10,11 +9,6 @@ const initialState = {
 
 function nowplayingReducer( state = initialState, payload) {
     switch (payload.type){
-        case FETCH_NOWPLAYING_REQUEST:
-            return {
-                ...state, 
-                requesting: true,
-            };
         case FETCH_NOWPLAYING_SUCCESS:
             return {
                 ...state,

@@ -1,9 +1,6 @@
-import {FETCH_TOP_RATED_FAILED, 
-    FETCH_TOP_RATED_SUCCESS, 
-    FETCH_TOP_RATED_REQUEST} from '../constants/ActionTypes';
+import {FETCH_TOP_RATED_FAILED, FETCH_TOP_RATED_SUCCESS} from '../constants/ActionTypes';
 
 const initialState = {
-    requesting: false,
     success: false,
     message: null,
     data: null,
@@ -11,11 +8,6 @@ const initialState = {
 
 function movieReducer( state = initialState, payload) {
     switch (payload.type){
-        case FETCH_TOP_RATED_REQUEST:
-            return {
-                ...state, 
-                requesting: true,
-            };
         case FETCH_TOP_RATED_SUCCESS:
             return {
                 ...state,

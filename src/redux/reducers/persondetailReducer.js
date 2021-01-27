@@ -1,9 +1,6 @@
-import {FETCH_PERSON_DETAIL_REQUEST,
-    FETCH_PERSON_DETAIL_SUCCESS,
-    FETCH_PERSON_DETAIL_FAILED} from '../constants/ActionTypes';
+import {FETCH_PERSON_DETAIL_SUCCESS,FETCH_PERSON_DETAIL_FAILED} from '../constants/ActionTypes';
 
 const initialState = {
-    requesting: false,
     success: false,
     message: null,
     data: null
@@ -11,11 +8,6 @@ const initialState = {
 
 function persondetailReducer( state = initialState, payload) {
     switch (payload.type){
-        case FETCH_PERSON_DETAIL_REQUEST:
-            return {
-                ...state, 
-                requesting: true,
-            };
         case FETCH_PERSON_DETAIL_SUCCESS:
             return {
                 ...state,

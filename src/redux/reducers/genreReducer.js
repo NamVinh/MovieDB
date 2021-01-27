@@ -1,9 +1,6 @@
-import {FETCH_GENRE_FAILED,
-    FETCH_GENRE_SUCCESS,
-    FETCH_GENRE_REQUEST} from '../constants/ActionTypes';
+import {FETCH_GENRE_FAILED,FETCH_GENRE_SUCCESS} from '../constants/ActionTypes';
 
 const initialState = {
-    requesting: false,
     success: false,
     message: null,
     data: null,
@@ -11,11 +8,6 @@ const initialState = {
 
 function genreReducer( state = initialState, payload) {
     switch (payload.type){
-        case FETCH_GENRE_REQUEST:
-            return {
-                ...state, 
-                requesting: true,
-            };
         case FETCH_GENRE_SUCCESS:
             return {
                 ...state,

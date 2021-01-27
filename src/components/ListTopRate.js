@@ -8,7 +8,7 @@ export const ListTopRate = () => {
     const IMG_API = 'https://image.tmdb.org/t/p/w1280';
     // redux hooks
     const dispatch = useDispatch();
-    const data = useSelector( state =>  state.toprate.data);
+    const data = useSelector( state =>  state.topRate.data);
     console.log(data)
     useEffect(() => {
         dispatch(loadTopRatedMovies())

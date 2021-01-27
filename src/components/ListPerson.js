@@ -4,7 +4,7 @@ import {loadPersonsDetail} from '../redux/actions/personDetailAction'
 const IMG_API = 'https://image.tmdb.org/t/p/w1280';
 export const ListPerson = ({fetchUrl}) => {
     const dispatch = useDispatch();
-    const persons = useSelector( state => state.persondetail.data);
+    const persons = useSelector( state => state.personDetail.data);
     
     // console.log(persons, requesting)
 

@@ -1,12 +1,7 @@
-import {
-    
-    FETCH_PERSON_DETAIL_FAILED, FETCH_PERSON_DETAIL_SUCCESS, FETCH_PERSON_DETAIL_REQUEST,
-    
-} from '../constants/ActionTypes';
+import {FETCH_PERSON_DETAIL_FAILED, FETCH_PERSON_DETAIL_SUCCESS} from '../constants/ActionTypes';
 
 export const loadPersonsDetail = (fetchUrl) => async dispatch => {
     try {
-        dispatch({ type: FETCH_PERSON_DETAIL_REQUEST});
 
         const response = await fetch(fetchUrl);
         const responseBody = await response.json();
