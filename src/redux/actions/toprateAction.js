@@ -1,16 +1,15 @@
-import {FETCH_TOP_RATED_FAILED, FETCH_TOP_RATED_SUCCESS} from '../constants/ActionTypes';
+import { FETCH_TOP_RATED_FAILED, FETCH_TOP_RATED_SUCCESS } from '../constants/ActionTypes';
 const TOPRATED_API = 'https://api.themoviedb.org/3/movie/top_rated?api_key=5189f4621a63c386a27e8be715fc7ab2&language=en-US&page=1';
 
-export const loadTopRatedMovies = () => async dispatch => {
-    try {
+export const loadTopRatedMovies = () => async (dispatch) => {
+	try {
+		const response = await fetch(TOPRATED_API);
+		const responseBody = await response.json();
 
-        const response = await fetch(TOPRATED_API);
-        const responseBody = await response.json();
+		dispatch({ type: FETCH_TOP_RATED_SUCCESS, data: responseBody.results });
+	} catch (e) {
+		console.log(e);
 
-        dispatch({ type: FETCH_TOP_RATED_SUCCESS, data: responseBody.results });
-    } catch (e) {
-        console.log(e)
-
-        dispatch({ type: FETCH_TOP_RATED_FAILED, message: e})
-    }
-}
+		dispatch({ type: FETCH_TOP_RATED_FAILED, message: e });
+	}
+};
