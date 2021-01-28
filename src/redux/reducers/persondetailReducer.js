@@ -6,7 +6,7 @@ const initialState = {
 	data: null,
 };
 
-function persondetailReducer(state = initialState, payload) {
+function personDetailReducer(state = initialState, payload) {
 	switch (payload.type) {
 		case FETCH_PERSON_DETAIL_SUCCESS:
 			return {
@@ -27,4 +27,4 @@ function persondetailReducer(state = initialState, payload) {
 	}
 }
 
-export default persondetailReducer;
+export default personDetailReducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { List } from './List';
+import { SEARCH_API } from '../Constants';
 export const Search = (search_value) => {
-	const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=5189f4621a63c386a27e8be715fc7ab2&query=';
 	const id = search_value.match.params.id;
 	console.log(search_value.match.params.id);
 

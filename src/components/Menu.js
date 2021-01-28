@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadGenres } from '../redux/actions/genreAction';
+import { LOGO_MENU } from '../Constants';
 import '../css/Menu.css';
 export const Menu = () => {
 	const [searchValue, setsearchValue] = useState('');
@@ -57,12 +58,7 @@ export const Menu = () => {
 			<Navbar style={{ backgroundColor: '#032541' }} variant='dark' expand='lg' fixed='top'>
 				<div className='container'>
 					<Navbar.Brand href='/'>
-						<img
-							src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'
-							alt='The Movie Database (TMDb)'
-							width='154'
-							height='38'
-						/>
+						<img src={LOGO_MENU} alt='The Movie Database (TMDb)' width='154' height='38' />
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav ' />
 					<Navbar.Collapse id='basic-navbar-nav '>

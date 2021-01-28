@@ -6,7 +6,7 @@ const initialState = {
 	data: null,
 };
 
-function nowplayingReducer(state = initialState, payload) {
+function nowPlayingReducer(state = initialState, payload) {
 	switch (payload.type) {
 		case FETCH_NOWPLAYING_SUCCESS:
 			return {
@@ -27,4 +27,4 @@ function nowplayingReducer(state = initialState, payload) {
 	}
 }
 
-export default nowplayingReducer;
+export default nowPlayingReducer;

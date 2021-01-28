@@ -6,7 +6,7 @@ const initialState = {
 	data: null,
 };
 
-function movieReducer(state = initialState, payload) {
+function topRateReducer(state = initialState, payload) {
 	switch (payload.type) {
 		case FETCH_TOP_RATED_SUCCESS:
 			return {
@@ -27,4 +27,4 @@ function movieReducer(state = initialState, payload) {
 	}
 }
 
-export default movieReducer;
+export default topRateReducer;

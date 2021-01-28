@@ -6,7 +6,7 @@ const initialState = {
 	data: null,
 };
 
-function movievideoReducer(state = initialState, payload) {
+function movieVideoReducer(state = initialState, payload) {
 	switch (payload.type) {
 		case FETCH_MOVIES_VIDEO_SUCCESS:
 			return {
@@ -27,4 +27,4 @@ function movievideoReducer(state = initialState, payload) {
 	}
 }
 
-export default movievideoReducer;
+export default movieVideoReducer;
